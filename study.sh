@@ -1,4 +1,5 @@
 #! /bin/bash
+
 echo "計算します"
 a=10
 b=5
@@ -62,10 +63,111 @@ echo "５以上の数値を入力してください"
 read num
 if [ "$num" -ge "5" ]; then
 	echo "実行します"
-while [ "$num" = "5" ]; do
+while [ "$num" -ge "5" ]; do
 	echo "$num"
 	num="$(expr $num - 1)"
 done
 else
 	echo "終了します"
 fi
+
+
+#until文
+num="5"
+echo "until文を開始します"
+until [ "$num" -eq "0" ]; do
+	echo "$num"
+	num="$(expr $num - 1)"
+done
+
+
+#while文
+num="5"
+echo "while文を開始します"
+while [ "$num" != "0" ]; do
+        echo "$num"
+        num="$(expr $num - 1)"
+done
+
+
+#ランダムスクリプト
+num="$(expr $RANDOM % 10)"
+echo "ランダムスクリプトを開始しますか？ : (yes or no)"
+read you
+case "$you" in
+"yes")
+echo "数値を入力して下さい"
+read input
+while :
+ do
+echo "数値を入力して下さい"
+if [ "$input" -eq "$num" ]; then
+	echo "正解です！"
+	break
+elif [ "$input" -ge "$num" ]; then
+ 	echo "数値が大きいです"
+
+
+elif [ "$input" -lt "$num" ]; then
+	echo "数値が小さいです"
+fi
+read input
+
+done
+;;
+"no")
+echo "終了です"
+exit 1
+;;
+esac
+
+
+#四則演算
+echo "四則演算を開始します"
+while :
+do
+echo  "選択して下さい 1)加算 2)減算 3)乗算 4)徐算 5)終了"
+read input
+case "$input" in
+"1")
+echo "加算します"
+echo "数値を入力して下さい"
+read num
+echo "２回目の数値を入力して下さい"
+read num2
+total="$(expr $num + $num2 )"
+echo "合計$totalです"
+;;
+"2")
+echo "減算します"
+echo "数値を入力して下さい"
+read num
+echo "２回目の数値を入力して下さい"
+read num2
+total="$(expr $num - $num2 )"
+echo "合計$totalです"
+;;
+"3")
+echo "乗算します"
+echo "数値を入力して下さい"
+read num
+echo "２回目の数値を入力して下さい"
+read num2
+total="$(expr $num \* $num2 )"
+echo "合計$totalです"
+;;
+"4")
+echo "徐算します"
+echo "数値を入力して下さい"
+read num
+echo "２回目の数値を入力して下さい"
+read num2
+total="$(expr $num / $num2 )"
+echo "合計$totalです"
+;;
+"5")
+echo "終了します"
+exit 1
+;;
+esac
+done
