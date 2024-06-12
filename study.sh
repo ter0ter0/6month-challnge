@@ -171,3 +171,12 @@ exit 1
 ;;
 esac
 done
+
+#1024まで
+echo "1024まで繰り返します"
+echo "数値を入力して下さい"
+read num
+while [ "$num" -lt "1024" ]; do
+num="$(expr $num + 1)"
+echo "$num"
+done
